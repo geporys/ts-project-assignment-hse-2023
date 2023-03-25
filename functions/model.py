@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from data import get_endog_and_exog
 
 def first_model(data):
-    train_data = data[data.index < '2022-11-21']
-    test_data = data[data.index >= '2022-11-21'] 
+    train_data = data[data.index < '2022-10-21']
+    test_data = data[data.index >= '2022-10-21'] 
     
     (endog, exog) = get_endog_and_exog(data)
     
