@@ -6,6 +6,7 @@ def get_NIC_from_yFinance():
     nic = yf.Ticker("NIC.AX")
     nic_df = nic.history(period="max")
     nic_df = nic_df.asfreq(freq='B', method='ffill').fillna(method='ffill')
+    nic_df = nic_df[:'2023-01-01']
     return nic_df
 
 def get_NIC_from_csv():
@@ -30,8 +31,8 @@ def get_nickel_data_from_businessinsider(nic_df):
 def get_rates(nic_df):
     rates = pd.DataFrame(data=[
         {'date': nic_df.index[-1].strftime('%m/%d/%Y'),	'rate': 3.60},
-        {'date': "03/08/2023",	'rate': 3.60},
-        {'date': "02/08/2023",	'rate': 3.35},
+#         {'date': "03/08/2023",	'rate': 3.60},
+#         {'date': "02/08/2023",	'rate': 3.35},
         {'date': "12/07/2022",	'rate': 3.10},
         {'date': "11/02/2022",	'rate': 2.85},
         {'date': "10/05/2022",	'rate': 2.60},
