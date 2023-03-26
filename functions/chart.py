@@ -7,6 +7,9 @@ from matplotlib.pyplot import figure
 
 
 def plot_nick_rate_nic(nick, rates, nic):
+    plt.rcParams["font.family"] = "Times New Roman"
+    plt.rcParams.update({'font.family':"Times New Roman"})
+    
     host = host_subplot(111, axes_class=axisartist.Axes)
     plt.subplots_adjust(right=0.75)
     
