@@ -67,6 +67,8 @@ def union_data_in_one_df(nick, rates, nic, currency, production, mining, indones
         'Metal products in indonesia': indonesia_metal_products['Base metal products']
     }, index=nic.index)
     
+    data = data.asfreq(freq='W-FRI').fillna(method='ffill')
+    
     return data
 
 def get_endog_and_exog(data):
