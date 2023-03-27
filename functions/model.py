@@ -3,12 +3,12 @@ import matplotlib.pyplot as plt
 from data import get_endog_and_exog
 
 def first_model(data):
-    train_data = data[data.index < '2022-08-21']
-    test_data = data[data.index >= '2022-08-21'] 
+    train_data = data[data.index < '2022-04-21']
+    test_data = data[data.index >= '2022-04-21'] 
     
     (endog, exog) = get_endog_and_exog(data)
     
-    mod = sm.tsa.arima.ARIMA(order=(4, 1, 1), endog=train_data[endog], exog=train_data[exog], freq="B")
+    mod = sm.tsa.arima.ARIMA(order=(2, 1, 5), endog=train_data[endog], exog=train_data[exog], freq="M")
     res = mod.fit()
     
     print(res.summary())
@@ -21,11 +21,11 @@ def first_model(data):
     
     predicted_value = res.get_prediction(test_data.index[0], test_data.index[-1], exog=test_data[exog]).summary_frame()
     
-    predicted_value['mean'].plot(ax=ax, style='k--')
-    ax.fill_between(predicted_value.index, predicted_value['mean_ci_lower'], predicted_value['mean_ci_upper'], color='k', alpha=0.1);
+#     predicted_value['mean'].plot(ax=ax, style='k--')
+#     ax.fill_between(predicted_value.index, predicted_value['mean_ci_lower'], predicted_value['mean_ci_upper'], color='k', alpha=0.1);
     
     fig, ax = plt.subplots(figsize=(15, 5))
-    data[endog]["2022-01-20":"2022-08-21"].plot(ax=ax)
+    data[endog]["2021-04-20":].plot(ax=ax)
     predicted_value['mean'].plot(ax=ax, color='red')
     ax.fill_between(
         predicted_value.index, 
